@@ -9,12 +9,26 @@ import { PageBanner } from './components/PageBanner';
 import { OfferCard } from './components/OfferCard';
 import { Footer } from './components/Footer';
 import { mockApi } from './services/mockApi';
-import type { Course } from './types';
+import type { Course, Offer } from './types';
 import Typography from '@mui/material/Typography';
+import { InstallmentsModal } from './components/InstallmentsModal';
 
 export function App() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
+
+  // Estados do Modal
+  const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = (offer: Offer) => {
+    setSelectedOffer(offer);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     mockApi.getCourses().then((data) => {
@@ -38,7 +52,7 @@ export function App() {
           <Box sx={{ maxWidth: '1190px', margin: '0 auto', px: { xs: 3, lg: 0 }, py: 5 }}>
             {loading ? (
               <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
-                <CircularProgress /> 
+                <CircularProgress />
               </Box>
             ) : (
               <Box>
@@ -48,7 +62,7 @@ export function App() {
 
                 <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
                   {courses[0]?.offers.map((offer) => (
-                    <OfferCard key={offer.id} offer={offer} />
+                    <OfferCard key={offer.id} offer={offer} onSelectOffer={handleOpenModal} />
                   ))}
                 </Box>
               </Box>
@@ -57,6 +71,14 @@ export function App() {
         </Box>
 
         <Footer />
+
+        {selectedOffer && (
+          <InstallmentsModal
+            open={isModalOpen}
+            onClose={handleCloseModal}
+            offer={selectedOffer}
+          />
+        )}
       </Box>
     </ThemeProvider>
   );

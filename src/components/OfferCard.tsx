@@ -7,9 +7,10 @@ import type { Offer } from '../types';
 
 interface OfferCardProps {
   offer: Offer;
+  onSelectOffer: (offer: Offer) => void;
 }
 
-export function OfferCard({ offer }: OfferCardProps) {
+export function OfferCard({ offer, onSelectOffer }: OfferCardProps) {
 
   return (
     <Card
@@ -85,8 +86,9 @@ export function OfferCard({ offer }: OfferCardProps) {
 
         <Button
           variant="contained"
-          color="secondary" 
+          color="secondary"
           fullWidth
+          onClick={() => onSelectOffer(offer)}
           sx={{
             height: '48px', 
             px: 3,
