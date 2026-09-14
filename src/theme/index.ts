@@ -26,8 +26,8 @@ export const theme = createTheme({
       fontFamily: "Inter",
       fontWeight: 600,
       fontSize: '36px',
-      '@media (min-width:900px)': { 
-        fontSize: '40px', 
+      '@media (min-width:900px)': {
+        fontSize: '40px',
       },
       lineHeight: '114%',
     },
@@ -59,12 +59,12 @@ export const theme = createTheme({
       fontSize: '16px',
       lineHeight: '115%',
     },
-    subtitle1: { 
+    subtitle1: {
       fontFamily: "Inter",
       fontWeight: 600,
       fontSize: '16px',
       lineHeight: '150%',
-      letterSpacing: '0.02em', 
+      letterSpacing: '0.02em',
       textTransform: 'uppercase',
     }
   },

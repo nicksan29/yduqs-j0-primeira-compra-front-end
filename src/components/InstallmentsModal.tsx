@@ -16,9 +16,10 @@ interface InstallmentsModalProps {
   open: boolean;
   onClose: () => void;
   offer: Offer;
+  onConfirm: () => void;
 }
 
-export function InstallmentsModal({ open, onClose, offer }: InstallmentsModalProps) {
+export function InstallmentsModal({ open, onClose, offer, onConfirm }: InstallmentsModalProps) {
   const [selectedInstallment, setSelectedInstallment] = useState<number>(offer.installmentsOptions?.[0]?.installments || 1);
   const [expandedAccordion, setExpandedAccordion] = useState<string | false>(false);
 
@@ -215,6 +216,7 @@ export function InstallmentsModal({ open, onClose, offer }: InstallmentsModalPro
         <Button
           variant="contained"
           color="secondary"
+          onClick={onConfirm}
           sx={{
             width: '100%',
             maxWidth: '552px',

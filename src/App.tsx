@@ -12,6 +12,7 @@ import { mockApi } from './services/mockApi';
 import type { Course, Offer } from './types';
 import Typography from '@mui/material/Typography';
 import { InstallmentsModal } from './components/InstallmentsModal';
+import { EnrollmentForm } from './components/EnrollmentForm';
 
 export function App() {
   const [courses, setCourses] = useState<Course[]>([]);
@@ -20,6 +21,7 @@ export function App() {
   // Estados do Modal
   const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState<'home' | 'form'>('home');
 
   const handleOpenModal = (offer: Offer) => {
     setSelectedOffer(offer);
@@ -41,45 +43,52 @@ export function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+      
+      <Header />
 
-        <Header />
+      {currentPage === 'form' ? (
+        <EnrollmentForm onSuccess={() => setCurrentPage('home')} />
+      ) : (
+        <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+          <Box component="main" sx={{ flexGrow: 1 }}>
+            <PageBanner />
 
-        <Box component="main" sx={{ flexGrow: 1 }}>
-
-          <PageBanner />
-
-          <Box sx={{ maxWidth: '1190px', margin: '0 auto', px: { xs: 3, lg: 0 }, py: 5 }}>
-            {loading ? (
-              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
-                <CircularProgress />
-              </Box>
-            ) : (
-              <Box>
-                <Typography variant="body3" sx={{ display: 'block', mb: 2 }}>
-                  {courses[0]?.offers.length} opções encontradas
-                </Typography>
-
-                <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
-                  {courses[0]?.offers.map((offer) => (
-                    <OfferCard key={offer.id} offer={offer} onSelectOffer={handleOpenModal} />
-                  ))}
+            <Box sx={{ maxWidth: '1190px', margin: '0 auto', px: { xs: 3, lg: 0 }, py: 5 }}>
+              {loading ? (
+                <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
+                  <CircularProgress />
                 </Box>
-              </Box>
-            )}
+              ) : (
+                <Box>
+                  <Typography variant="body3" sx={{ display: 'block', mb: 2 }}>
+                    {courses[0]?.offers.length} opções encontradas
+                  </Typography>
+
+                  <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
+                    {courses[0]?.offers.map((offer) => (
+                      <OfferCard key={offer.id} offer={offer} onSelectOffer={handleOpenModal} />
+                    ))}
+                  </Box>
+                </Box>
+              )}
+            </Box>
           </Box>
+
+          <Footer />
         </Box>
+      )}
 
-        <Footer />
-
-        {selectedOffer && (
-          <InstallmentsModal
-            open={isModalOpen}
-            onClose={handleCloseModal}
-            offer={selectedOffer}
-          />
-        )}
-      </Box>
+      {selectedOffer && (
+        <InstallmentsModal
+          open={isModalOpen}
+          onClose={handleCloseModal}
+          offer={selectedOffer}
+          onConfirm={() => {
+            setIsModalOpen(false);
+            setCurrentPage('form');
+          }}
+        />
+      )}
     </ThemeProvider>
   );
 }
