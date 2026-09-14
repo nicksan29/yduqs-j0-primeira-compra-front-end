@@ -52,13 +52,13 @@ const formSchema = z.object({
 type FormData = z.infer<typeof formSchema>;
 
 interface EnrollmentFormProps {
-  onSuccess: () => void;
+  onSuccess: (data: FormData) => void;
 }
 
 export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<FormData>({
     resolver: zodResolver(formSchema),
-    mode: 'onChange', 
+    mode: 'onChange',
     defaultValues: {
       terms: false,
       whatsapp: false
@@ -68,7 +68,7 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
   const onSubmit = (data: FormData) => {
     console.log("Dados do formulário:", data);
     alert("Inscrição enviada com sucesso!");
-    onSuccess();
+    onSuccess(data);
   };
 
   const textFieldStyles = {
@@ -90,7 +90,7 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
   return (
     <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', bgcolor: 'background.paper', width: '100%', margin: '0 auto' }}>
 
-      
+
       <Box sx={{
         width: '100%',
         bgcolor: 'primary.main',
@@ -108,7 +108,7 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
         </Box>
       </Box>
 
-      
+
       <Box sx={{ flex: 1, width: '100%' }}>
         <Box sx={{
           maxWidth: '1366px',
@@ -125,7 +125,7 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
             gap: '24px'
           }}>
 
-            
+
             <Box>
               <TextField
                 fullWidth
@@ -214,7 +214,7 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
 
             <Button
               type="submit"
-              disabled={!watch('terms')} 
+              disabled={!watch('terms')}
               sx={{
                 width: '110px',
                 height: '48px',
