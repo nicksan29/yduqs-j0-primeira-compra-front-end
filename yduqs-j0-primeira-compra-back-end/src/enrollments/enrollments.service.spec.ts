@@ -27,7 +27,7 @@ describe('EnrollmentsService', () => {
     prisma = module.get<PrismaService>(PrismaService);
   });
 
-  it('should be defined', () => {
+  it('deve estar definido', () => {
     expect(service).toBeDefined();
   });
 
@@ -43,7 +43,7 @@ describe('EnrollmentsService', () => {
       whatsapp: true,
     };
 
-    it('should create an enrollment when CPF is unique (Happy Path)', async () => {
+    it('deve criar uma matrícula quando o CPF é único', async () => {
       vi.spyOn(prisma.enrollment, 'findUnique').mockResolvedValue(null);
       
       const createdEnrollment = { id: 1, ...mockDto, createdAt: new Date() };
@@ -62,7 +62,7 @@ describe('EnrollmentsService', () => {
       });
     });
 
-    it('should throw ConflictException when CPF already exists', async () => {
+    it('deve lançar ConflictException quando o CPF já existir', async () => {
       const existingRecord = { id: 1, ...mockDto, createdAt: new Date() };
       vi.spyOn(prisma.enrollment, 'findUnique').mockResolvedValue(existingRecord as any);
 

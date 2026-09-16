@@ -25,12 +25,12 @@ describe('CoursesService', () => {
     prisma = module.get<PrismaService>(PrismaService);
   });
 
-  it('should be defined', () => {
+  it('deve estar definido', () => {
     expect(service).toBeDefined();
   });
 
   describe('findAll', () => {
-    it('should return a list of courses with relations', async () => {
+    it('deve retornar a lista de cursos com ofertas e parcelas', async () => {
       const mockedCourses = [
         {
           id: 1,

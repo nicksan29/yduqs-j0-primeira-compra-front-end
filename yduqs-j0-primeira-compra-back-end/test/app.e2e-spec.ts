@@ -17,8 +17,8 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  describe('Courses API', () => {
-    it('/courses (GET) should return an array of courses', async () => {
+  describe('API de Cursos', () => {
+    it('/courses (GET) deve retornar uma lista de cursos', async () => {
       const response = await request(app.getHttpServer())
         .get('/courses')
         .expect(200);
@@ -27,7 +27,7 @@ describe('AppController (e2e)', () => {
     });
   });
 
-  describe('Enrollments API', () => {
+  describe('API de Matrículas', () => {
     const randomCpf = `111.222.333-${Math.floor(10 + Math.random() * 90)}`; // Generate random CPF to avoid state conflicts
 
     const enrollmentPayload = {
@@ -41,7 +41,7 @@ describe('AppController (e2e)', () => {
       whatsapp: true,
     };
 
-    it('/enrollments (POST) should create a new enrollment', async () => {
+    it('/enrollments (POST) deve criar uma nova matrícula', async () => {
       const response = await request(app.getHttpServer())
         .post('/enrollments')
         .send(enrollmentPayload)
@@ -51,7 +51,7 @@ describe('AppController (e2e)', () => {
       expect(response.body.cpf).toBe(randomCpf);
     });
 
-    it('/enrollments (POST) should return 409 Conflict if CPF already exists', async () => {
+    it('/enrollments (POST) deve retornar Erro 409 se o CPF já existir', async () => {
      
       const response = await request(app.getHttpServer())
         .post('/enrollments')
