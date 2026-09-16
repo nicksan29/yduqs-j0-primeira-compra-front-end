@@ -232,15 +232,16 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
                 fontWeight: 500,
                 fontSize: '16px',
                 textTransform: 'none',
+                px: 3,
                 '&.Mui-disabled': {
-                  bgcolor: '#121212',
-                  opacity: 0.4,
-                  color: 'white'
+                  bgcolor: '#E0E0E0',
+                  color: '#121212',
+                  opacity: 1,
                 },
-                bgcolor: 'secondary.main',
+                bgcolor: 'primary.main',
                 color: 'white',
                 '&:hover': {
-                  bgcolor: '#d32f2f'
+                  bgcolor: 'primary.dark'
                 }
               }}
             >
