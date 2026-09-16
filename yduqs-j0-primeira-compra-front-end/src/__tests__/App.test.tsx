@@ -35,7 +35,7 @@ describe('App Integration Tests', () => {
     vi.clearAllMocks();
   });
 
-  it('deve exibir o esqueleto de carregamento (progressbar) ao abrir', () => {
+  it('deve exibir o esqueleto de carregamento ao abrir', () => {
     vi.mocked(mockApi.getCourses).mockReturnValue(new Promise(() => { }));
 
     render(<App />);

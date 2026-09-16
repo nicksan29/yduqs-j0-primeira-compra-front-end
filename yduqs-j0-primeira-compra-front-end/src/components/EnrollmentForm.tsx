@@ -8,6 +8,7 @@ import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { SimplifiedFooter } from './SimplifiedFooter';
+import { mockApi } from '../services/mockApi';
 
 
 const maskCPF = (value: string) => {
@@ -64,10 +65,14 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
     }
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Dados do formulário:", data);
-    alert("Inscrição enviada com sucesso!");
-    onSuccess(data);
+  const onSubmit = async (data: FormData) => {
+    try {
+      await mockApi.submitEnrollment(data);
+      alert("Inscrição enviada e salva no banco de dados com sucesso!");
+      onSuccess(data);
+    } catch (error) {
+      alert("Erro: Já existe uma matrícula para este CPF (ou ocorreu falha de rede)!");
+    }
   };
 
   const textFieldStyles = {

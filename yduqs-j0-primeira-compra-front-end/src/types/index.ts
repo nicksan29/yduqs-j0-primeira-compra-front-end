@@ -32,12 +32,12 @@ export interface Course {
 
 
 export interface UserFormData {
-  fullName: string;
+  name: string;
   cpf: string;
   birthDate: string;
   email: string;
   phone: string;
   graduationYear: string;
-  agreeTerms: boolean;
-  agreeWhatsApp: boolean;
+  terms: boolean;
+  whatsapp: boolean;
 }

@@ -61,26 +61,29 @@ export function OfferCard({ offer, onSelectOffer }: OfferCardProps) {
           </Box>
         ) : (
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-            <Typography variant="caption" component='p'>
+            <Typography sx={{ mb: { xs: 0.5, md: 0.5 } }} variant="caption" component='p'>
               De <span style={{ textDecoration: 'line-through' }}>R$ {offer.originalPrice?.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span> por até
             </Typography>
 
 
-            <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 0.5 }}>
-              <Typography variant="caption" component='p' sx={{ lineHeight: '135%' }}>
-                {offer.installmentsOptions[offer.installmentsOptions.length - 1].installments}x
-              </Typography>
-              <Typography variant="h5" component="span" sx={{ fontSize: { xs: '36px', md: '40px' }, lineHeight: { xs: '20px', md: '28px' }, fontWeight: 700 }}>
-                R$ {offer.installmentsOptions[offer.installmentsOptions.length - 1].installmentValue.toFixed(2).replace('.', ',')}
-              </Typography>
-            </Box>
+            {offer.installmentsOptions && offer.installmentsOptions.length > 0 && (
+              <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
+                <Typography variant="caption" component='p' sx={{ lineHeight: '135%' }}>
+                  {offer.installmentsOptions[offer.installmentsOptions.length - 1].installments}x
+                </Typography>
+                <Typography variant="h5" component="span" sx={{ fontSize: { xs: '36px', md: '40px' }, lineHeight: { xs: '20px', md: '28px' }, fontWeight: 700 }}>
+                  R$ {offer.installmentsOptions[offer.installmentsOptions.length - 1].installmentValue.toFixed(2).replace('.', ',')}
+                </Typography>
+              </Box>
+            )}
 
 
             <Typography variant="caption" component='p' sx={{ fontSize: "14px", lineHeight: "150%" }}>
               à vista R$ {offer.discountPrice?.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
             </Typography>
           </Box>
-        )}
+        )
+        }
 
         <Button
           variant="contained"
@@ -102,7 +105,7 @@ export function OfferCard({ offer, onSelectOffer }: OfferCardProps) {
         >
           Avançar
         </Button>
-      </Box>
+      </Box >
 
       <Box
         sx={{
@@ -138,6 +141,6 @@ export function OfferCard({ offer, onSelectOffer }: OfferCardProps) {
           {offer.campus.address}
         </Typography>
       </Box>
-    </Card>
+    </Card >
   );
 }

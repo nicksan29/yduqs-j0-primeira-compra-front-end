@@ -82,20 +82,20 @@ export function Footer() {
         <Container sx={{ px: 3 }}>
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-              <Box component="img" src={phoneIcon} alt="Telefone" sx={{ width: '24px', height: '24px' }} />
+              <Box component="img" src={phoneIcon} alt="Telefone" sx={{ width: '40px', height: '40px' }} />
               <Typography variant="body1" component="p" sx={{ fontWeight: 600 }}>0800 771 5055</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-              <Box component="img" src={wppIcon} alt="WhatsApp" sx={{ width: '24px', height: '24px' }} />
+              <Box component="img" src={wppIcon} alt="WhatsApp" sx={{ width: '40px', height: '40px' }} />
               <Typography variant="body1" component="p" sx={{ fontWeight: 600 }}>Precisa de ajuda?</Typography>
             </Box>
           </Box>
         </Container>
       </Box>
 
-      <Divider sx={{ borderColor: 'rgba(255,255,255,0.2)', display: { md: 'none' }, pt: 3 }} />
 
       <Container maxWidth={false} sx={{ maxWidth: '1190px !important', px: { xs: 3, lg: 0 }, pt: { xs: 3, md: 4 }, pb: { xs: 3, md: 3.5 } }}>
+        <Divider sx={{ borderColor: '#FFFFFF', display: { md: 'none' }, mb: { xs: 3, md: 0 }, mt: { xs: 1, md: 0 } }} />
 
         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
           <Box sx={{ display: 'flex', gap: 1 }}>
@@ -150,7 +150,7 @@ export function Footer() {
           ))}
         </Box>
 
-        <Divider sx={{ borderColor: 'rgba(255,255,255,0.2)' }} />
+        <Divider sx={{ borderColor: '#FFFFFF' }} />
 
 
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column-reverse', md: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', md: 'center' }, py: 4, gap: 4 }}>
@@ -169,7 +169,7 @@ export function Footer() {
           </Box>
         </Box>
 
-        <Divider sx={{ borderColor: 'rgba(255,255,255,0.2)' }} />
+        <Divider sx={{ borderColor: '#FFFFFF' }} />
 
         <Box sx={{ pt: 4 }}>
           <Typography variant="body3" sx={{ color: 'rgba(255,255,255,0.7)' }}>

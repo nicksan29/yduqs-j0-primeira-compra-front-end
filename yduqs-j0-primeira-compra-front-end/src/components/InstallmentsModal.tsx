@@ -130,7 +130,12 @@ export function InstallmentsModal({ open, onClose, offer, onConfirm }: Installme
                       <Radio
                         checked={selectedInstallment === opt.installments}
                         onChange={() => setSelectedInstallment(opt.installments)}
-                        sx={{ p: 0, color: '#121212' }}
+                        icon={<Box sx={{ width: 20, height: 20, borderRadius: '50%', border: '2px solid #121212' }} />}
+                        checkedIcon={<Box sx={{ width: 20, height: 20, borderRadius: '50%', border: '6px solid #121212', bgcolor: 'white' }} />}
+                        sx={{
+                          p: 0,
+                          mr: 1
+                        }}
                       />
                       <Typography component='p' sx={{ fontFamily: 'Inter', fontSize: '14px', fontWeight: 500, lineHeight: '117%' }}>
                         {opt.installments}x {opt.formattedInstallment}
