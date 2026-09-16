@@ -50,5 +50,6 @@ model Enrollment {
   graduationYear String
   terms          Boolean
   whatsapp       Boolean
+  offerId        String?
   createdAt      DateTime @default(now())
 }

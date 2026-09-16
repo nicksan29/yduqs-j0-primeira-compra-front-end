@@ -46,7 +46,7 @@ export function App() {
       <Header />
 
       {currentPage === 'form' ? (
-        <EnrollmentForm onSuccess={() => setCurrentPage('home')} />
+        <EnrollmentForm onSuccess={() => setCurrentPage('home')} offerId={selectedOffer?.id} />
       ) : (
         <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
           <Box component="main" sx={{ flexGrow: 1 }}>

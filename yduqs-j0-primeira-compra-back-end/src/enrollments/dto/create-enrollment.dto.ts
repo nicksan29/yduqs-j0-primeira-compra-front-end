@@ -1,4 +1,4 @@
-import { IsString, IsEmail, IsBoolean, IsNotEmpty } from 'class-validator';
+import { IsString, IsEmail, IsBoolean, IsNotEmpty, IsOptional } from 'class-validator';
 
 export class CreateEnrollmentDto {
   @IsString()
@@ -30,4 +30,8 @@ export class CreateEnrollmentDto {
 
   @IsBoolean()
   whatsapp: boolean;
+
+  @IsString()
+  @IsOptional()
+  offerId?: string;
 }
