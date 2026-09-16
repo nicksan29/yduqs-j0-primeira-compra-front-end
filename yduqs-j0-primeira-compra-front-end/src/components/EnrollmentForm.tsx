@@ -37,7 +37,6 @@ const maskDate = (value: string) => {
 
 const maskYear = (value: string) => value.replace(/\D/g, '').slice(0, 4);
 
-// === Esquema de Validação Zod ===
 const formSchema = z.object({
   name: z.string().min(3, "Digite seu nome completo."),
   cpf: z.string().length(14, "CPF inválido."),
@@ -56,7 +55,7 @@ interface EnrollmentFormProps {
 }
 
 export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
-  const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<FormData>({
+  const { register, handleSubmit, setValue, watch, formState: { errors, isValid } } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     mode: 'onChange',
     defaultValues: {
@@ -77,6 +76,8 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
       height: '56px',
       fontFamily: 'Inter',
       fontSize: '16px',
+      fontWeight: 400,
+      lineHeight: '133%',
       '& fieldset': {
         borderColor: '#E0E0E0',
       },
@@ -96,13 +97,15 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
         bgcolor: 'primary.main',
       }}>
         <Box sx={{
-          width: '100%',
+          maxWidth: '1366px',
           height: '118px',
-          px: { xs: 3, lg: '88px' },
+          margin: '0 auto',
+          px: { xs: 3, lg: 11 },
           display: 'flex',
+          color: 'background.paper',
           alignItems: 'center'
         }}>
-          <Typography variant="h4" sx={{ color: 'white', fontFamily: 'Montserrat', fontSize: '32px', fontWeight: 500 }}>
+          <Typography sx={{ fontSize: { xs: '24px', md: '32px' } }} variant="h4" component={'h2'}>
             Queremos saber um pouco mais sobre você
           </Typography>
         </Box>
@@ -113,16 +116,16 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
         <Box sx={{
           maxWidth: '1366px',
           margin: '0 auto',
-          px: { xs: 3, lg: '88px' },
-          pt: '40px',
-          pb: '80px'
+          px: { xs: 3, lg: 11 },
+          pt: 6,
+          pb: 5
         }}>
           <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{
             width: '100%',
             maxWidth: '660px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '24px'
+            gap: 3
           }}>
 
 
@@ -135,7 +138,7 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
                 helperText={errors.name?.message}
                 sx={textFieldStyles}
               />
-              <Typography sx={{ fontFamily: 'Inter', fontSize: '12px', color: '#121212', opacity: 0.72, mt: 1, ml: 1 }}>
+              <Typography sx={{ fontFamily: 'Inter', fontWeight: 400, lineHeight: '16px', fontSize: '12px', color: '#121212', opacity: 0.72, mt: 1, ml: 1 }}>
                 Preencha seu nome completo, sem abreviações, igual ao seu documento de identificação. <span style={{ textDecoration: 'underline', cursor: 'pointer' }}>Confira o exemplo.</span>
               </Typography>
             </Box>
@@ -181,7 +184,7 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
 
             <TextField
               fullWidth
-              placeholder="Ano de conclusão do ensino médio"
+              placeholder="Ano de conclusão ..."
               {...register("graduationYear")}
               onChange={(e) => setValue('graduationYear', maskYear(e.target.value), { shouldValidate: true })}
               error={!!errors.graduationYear}
@@ -214,7 +217,7 @@ export function EnrollmentForm({ onSuccess }: EnrollmentFormProps) {
 
             <Button
               type="submit"
-              disabled={!watch('terms')}
+              disabled={!isValid}
               sx={{
                 width: '110px',
                 height: '48px',

@@ -14,10 +14,16 @@ export const theme = createTheme({
       default: '#F5F7FA',
       paper: '#ffffff',
     },
+    text: {
+      primary: '#121212',
+      secondary: '#3D3D3D',
+
+    }
   },
   typography: {
-    fontFamily: '"Montserrat", "Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"Montserrat", "Inter"',
     h4: {
+      fontFamily: "Montserrat",
       fontWeight: 500,
       fontSize: '32px',
       lineHeight: '120%',

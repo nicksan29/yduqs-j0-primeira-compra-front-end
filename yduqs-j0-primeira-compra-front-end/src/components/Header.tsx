@@ -11,7 +11,7 @@ export function Header() {
       sx={{
         width: '100%',
         bgcolor: 'background.paper',
-        py: { xs: 2, md: 3.5 },
+        py: { xs: 3, md: 3.5 },
       }}
     >
       <Container
@@ -20,6 +20,7 @@ export function Header() {
           maxWidth: '1190px !important',
           px: { xs: 3, lg: 0 },
           display: 'flex',
+          gap: 2,
         }}
       >
         <Box

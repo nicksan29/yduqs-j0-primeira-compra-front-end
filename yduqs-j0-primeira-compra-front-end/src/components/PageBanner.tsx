@@ -9,8 +9,6 @@ export function PageBanner() {
             bgcolor: 'primary.main',
             color: 'background.paper',
             py: { xs: 3, md: 5 },
-
-            gap: { xs: 1, md: 2 },
         }}
         >
             <Container
@@ -20,7 +18,6 @@ export function PageBanner() {
                     px: { xs: 3, lg: 0 },
                     display: "flex",
                     flexDirection: 'column',
-                    justifyContent: 'center',
                     gap: { xs: 1, md: 1 },
                 }}
             >

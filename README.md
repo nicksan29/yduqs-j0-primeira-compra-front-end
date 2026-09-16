@@ -1,75 +1,76 @@
-# React + TypeScript + Vite
+# YDUQS - Desafio Front-end 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bem-vindo ao meu projeto do desafio para a YDUQS! Este projeto foi desenvolvido com foco absoluto em qualidade técnica, performance, e fidelidade visual baseada no Figma. 
 
-Currently, two official plugins are available:
+Para este projeto com foco front-end mas com parte no back também, estruturei este repositório como um **Monorepo**, contendo tanto a aplicação Front-end quanto uma API Back-end.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+# Tecnologias Utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+O projeto foi construído utilizando JavaScript/TypeScript:
 
-## Expanding the ESLint configuration
+# Front-end
+* *React + Vite*: Para um ambiente de desenvolvimento ultra-rápido e build otimizado.
+* *TypeScript*: Tipagem estática garantindo segurança e menos bugs.
+* *Material UI (MUI)*: Sistema de design avançado. Utilizei bastante a prop `sx` e o sistema de breakpoints (`xs`, `md`, `lg`) para garantir um layout responsivo em qualquer tela.
+* *React Hook Form + Zod*: Para o formulário de matrícula.
+* *Lucide React*: Ícones leves e customizáveis.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Back-end
+* *NestJS*: Framework Node.js corporativo com injeção de dependências e arquitetura modular.
+* *Prisma ORM*: Modelagem de dados moderna e tipada.
+* *Seed Automático*: Script configurado para popular o banco de dados com a oferta inicial do desafio.
+* *Docker*: Para o banco de dados
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🏗️ Arquitetura e Boas Práticas (Destaques)
 
+* **Data-Driven UI**: Componentes complexos como o `Footer` gigante não possuem textos soltos (hardcoded) no HTML. Os links são consumidos através de arrays mapeados, facilitando manutenção futura.
+* **Design Responsivo Avançado**: Adaptações complexas como troca de `flex-direction` (column-reverse) no mobile e ajustes de `padding` precisos para Laptops.
+* **Curto-Circuito Lógico (Short-Circuit)**: Tratamento seguro de estados nulos (ex: Modal de Parcelas só é renderizado quando há uma oferta válida na memória).
+* **Formatadores Nativos**: Uso do `Intl.NumberFormat` combinado com `useMemo` para formatação de moeda (BRL) otimizada e livre de gargalos de processamento.
+
+---
+
+## 🚀 Como Executar o Projeto Localmente
+
+Certifique-se de ter o **Node.js** (v18+) instalado em sua máquina.
+
+### 1. Rodando o Back-end (API)
+Abra um terminal na pasta raiz e navegue até o back-end:
+```bash
+cd yduqs-j0-primeira-compra-back-end
+
+# Instale as dependências
+npm install
+
+# (Opcional) Rode a migração/seed do banco de dados caso seja necessário
+npx prisma db push
+npm run seed
+
+# Inicie o servidor
+npm run start:dev
 ```
+A API estará rodando em `http://localhost:3000`.
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Rodando o Front-end (Interface)
+Abra **outro** terminal na pasta raiz e navegue até o front-end:
+```bash
+cd yduqs-j0-primeira-compra-front-end
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+# Instale as dependências
+npm install
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
+# Inicie o ambiente de desenvolvimento
+npm run dev
 ```
+A aplicação abrirá no seu navegador, geralmente em `http://localhost:5173`.
+
+---
+
+
+Desenvolvido com dedicação por **Nicolas Sandoli feitosa**.
+

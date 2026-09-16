@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  image       String?
+  offers      Offer[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Offer {
+  id                  String              @id @default(uuid())
+  courseId            String
+  modality            String
+  shift               String
+  originalPrice       Float?
+  discountPrice       Float?
+  campus              Json
+  isEaDWithoutPrice   Boolean?
+  bolsaIncentivoTexto String?
+  installmentsOptions InstallmentOption[]
+  course              Course              @relation(fields: [courseId], references: [id], onDelete: Cascade)
+}
+
+model InstallmentOption {
+  id               String @id @default(uuid())
+  offerId          String
+  installments     Int
+  installmentValue Float
+  totalValue       Float?
+  offer            Offer  @relation(fields: [offerId], references: [id], onDelete: Cascade)
+}
+
+model Enrollment {
+  id             String   @id @default(uuid())
+  name           String
+  cpf            String   @unique
+  birthDate      String
+  email          String
+  phone          String
+  graduationYear String
+  terms          Boolean
+  whatsapp       Boolean
+  createdAt      DateTime @default(now())
+}

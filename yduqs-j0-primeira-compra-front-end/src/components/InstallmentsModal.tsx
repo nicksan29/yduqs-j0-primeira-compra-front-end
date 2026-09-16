@@ -42,8 +42,8 @@ export function InstallmentsModal({ open, onClose, offer, onConfirm }: Installme
       onClose={onClose}
       sx={{
         '& .MuiDrawer-paper': {
-          width: { xs: '320px', md: '600px' }, 
-          borderRadius: { xs: 0, md: '8px 0 0 8px' }, 
+          width: { xs: '100%', md: '600px' },
+          borderRadius: 0,
         }
       }}
     >
@@ -51,7 +51,6 @@ export function InstallmentsModal({ open, onClose, offer, onConfirm }: Installme
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        height: { xs: '72px', md: '96px' },
         p: { xs: '16px 8px 16px 16px', md: '24px 16px 24px 32px' },
         borderBottom: '1px solid #E0E0E0'
       }}>
@@ -61,7 +60,7 @@ export function InstallmentsModal({ open, onClose, offer, onConfirm }: Installme
             fontWeight: 500,
             fontSize: { xs: '24px', md: '32px' },
             lineHeight: '120%'
-          }}>
+          }} component={'h2'}>
             Mais detalhes
           </Typography>
         </Box>
@@ -72,50 +71,45 @@ export function InstallmentsModal({ open, onClose, offer, onConfirm }: Installme
         </Box>
       </Box>
 
-      <DialogContent sx={{ p: { xs: '0 16px', md: '0 32px' }, display: 'flex', flexDirection: 'column', gap: { xs: '16px', md: '24px' } }}>
-        
-        
+      <DialogContent sx={{ p: { xs: '0 16px', md: '0 32px' }, display: 'flex', flexDirection: 'column', gap: { xs: 2, md: 2 } }}>
+
+
         {offer.modality !== 'Digital (EaD)' ? (
           <>
-            
-            <Box sx={{ pt: { xs: '16px', md: '24px' }, pb: '16px' }}>
-              <Typography sx={{
-                fontFamily: 'Inter',
-                fontWeight: 500,
-                fontSize: '16px',
-                lineHeight: '135%'
-              }}>
+
+            <Box sx={{ pt: { xs: 2, md: 3 }, pb: 0 }}>
+              <Typography variant='body3' component="p">
                 Qual dessas opções de parcelas você prefere?
               </Typography>
             </Box>
 
-            
+
             <Box sx={{
               width: '100%',
               maxWidth: '536px',
-              flexShrink: 0, 
+              flexShrink: 0,
               borderRadius: '8px',
-              border: '1px solid #E0E0E0',
+              border: '1px solid #144BC8',
               overflow: 'hidden',
               display: 'flex',
               flexDirection: 'column'
             }}>
-              
+
               <Box sx={{
                 bgcolor: 'primary.main',
                 color: 'white',
                 display: 'flex',
                 justifyContent: 'space-between',
-                px: '24px',
-                py: '12px',
+                px: 2,
+                py: 1,
                 textTransform: 'none',
-                flexShrink: 0 
+                flexShrink: 0
               }}>
-                <Typography sx={{ fontWeight: 400, fontSize: '14px' }}>Parcelas</Typography>
-                <Typography sx={{ fontWeight: 400, fontSize: '14px' }}>Total</Typography>
+                <Typography component='p' variant='body1' sx={{ lineHeight: '171%' }}>Parcelas</Typography>
+                <Typography component='p' variant='body1' sx={{ lineHeight: '171%', marginRight: 5.5 }}>Total</Typography>
               </Box>
 
-              
+
               <Box sx={{ display: 'flex', flexDirection: 'column', overflowY: 'auto', flex: 1 }}>
                 {formattedInstallments.map((opt, index) => (
                   <Box
@@ -125,25 +119,24 @@ export function InstallmentsModal({ open, onClose, offer, onConfirm }: Installme
                       display: 'flex',
                       justifyContent: 'space-between',
                       alignItems: 'center',
-                      px: '16px',
-                      py: '12px',
-                      borderBottom: index !== formattedInstallments.length - 1 ? '1px solid #E0E0E0' : 'none',
+                      px: 2,
+                      py: 2,
+                      borderBottom: index !== formattedInstallments.length - 1 ? '1px solid #144BC8' : 'none',
                       cursor: 'pointer',
-                      bgcolor: selectedInstallment === opt.installments ? 'rgba(20, 75, 200, 0.05)' : 'transparent',
-                      '&:hover': { bgcolor: 'rgba(20, 75, 200, 0.05)' }
+
                     }}
                   >
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                       <Radio
                         checked={selectedInstallment === opt.installments}
                         onChange={() => setSelectedInstallment(opt.installments)}
-                        sx={{ p: 0, color: 'primary.main' }}
+                        sx={{ p: 0, color: '#121212' }}
                       />
-                      <Typography sx={{ fontFamily: 'Inter', fontSize: '14px', fontWeight: 500 }}>
+                      <Typography component='p' sx={{ fontFamily: 'Inter', fontSize: '14px', fontWeight: 500, lineHeight: '117%' }}>
                         {opt.installments}x {opt.formattedInstallment}
                       </Typography>
                     </Box>
-                    <Typography sx={{ fontFamily: 'Inter', fontSize: '14px', fontWeight: 500, color: '#666' }}>
+                    <Typography component='p' sx={{ fontFamily: 'Inter', fontSize: '14px', fontWeight: 500, color: '#686868ff', lineHeight: '171%' }}>
                       {opt.formattedTotal}
                     </Typography>
                   </Box>
@@ -152,33 +145,35 @@ export function InstallmentsModal({ open, onClose, offer, onConfirm }: Installme
             </Box>
           </>
         ) : (
-          
+
           <Box sx={{
             bgcolor: 'primary.main',
             color: 'white',
-            p: { xs: '24px 16px', md: 3 },
-            mx: { xs: '-16px', md: '-32px' }, 
+            px: { xs: 2, md: 3 },
+            pb: { xs: 2, md: 3 },
+            pt: { xs: 2, md: 3 },
+            mx: { xs: '-16px', md: '-32px' },
             display: 'flex',
             flexDirection: 'column',
-            gap: 2,
+            gap: 1,
           }}>
             <Info size={24} color="white" />
-            <Typography sx={{ fontFamily: 'Inter', fontSize: '16px', fontWeight: 400, lineHeight: '150%' }}>
+            <Typography variant='body1' component="h3">
               Inscreva-se para saber tudo sobre os valores e garantir a sua vaga!
             </Typography>
           </Box>
         )}
 
-        
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: '16px', pb: { xs: '24px', md: '32px' }, pt: { xs: '24px', md: 0 }, maxWidth: '536px' }}>
+
+        <Box sx={{ display: 'flex', flexDirection: 'column', pb: { xs: 6, md: 9 }, pt: { xs: 2, md: 4 }, maxWidth: '536px' }}>
 
           <Accordion
             expanded={expandedAccordion === 'bolsa'}
             onChange={handleAccordionChange('bolsa')}
-            sx={{ border: '1px solid #E0E0E0', borderRadius: '8px !important', boxShadow: 'none', '&:before': { display: 'none' } }}
+            sx={{ border: '1px solid #E0E0E0', borderRadius: '8px !important', boxShadow: 'none', '&:before': { display: 'none' }, mb: 2 }}
           >
-            <AccordionSummary expandIcon={expandedAccordion === 'bolsa' ? <Minus size={24} /> : <Plus size={24} />} sx={{ px: '24px', minHeight: '72px' }}>
-              <Typography sx={{ fontFamily: 'Inter', fontWeight: 500, fontSize: '16px' }}>Sobre a Bolsa Incentivo</Typography>
+            <AccordionSummary expandIcon={expandedAccordion === 'bolsa' ? <Minus size={24} /> : <Plus size={24} />} sx={{ p: { xs: 2, md: 3 }, minHeight: '72px', gap: 2 }}>
+              <Typography variant="caption" component="h2">Sobre a Bolsa Incentivo</Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ px: '24px', pb: '24px' }}>
               <Typography variant="body1">Detalhes da bolsa incentivo aplicáveis a esta oferta.</Typography>
@@ -190,8 +185,8 @@ export function InstallmentsModal({ open, onClose, offer, onConfirm }: Installme
             onChange={handleAccordionChange('resumo')}
             sx={{ border: '1px solid #E0E0E0', borderRadius: '8px !important', boxShadow: 'none', '&:before': { display: 'none' } }}
           >
-            <AccordionSummary expandIcon={expandedAccordion === 'resumo' ? <Minus size={24} /> : <Plus size={24} />} sx={{ px: '24px', minHeight: '72px' }}>
-              <Typography sx={{ fontFamily: 'Inter', fontWeight: 500, fontSize: '16px' }}>Resumo das suas escolhas</Typography>
+            <AccordionSummary expandIcon={expandedAccordion === 'resumo' ? <Minus size={24} /> : <Plus size={24} />} sx={{ p: { xs: 2, md: 3 }, minHeight: '72px', gap: 2 }}>
+              <Typography variant="caption" component="h2">Resumo das suas escolhas</Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ px: '24px', pb: '24px' }}>
               <Typography variant="body1">
@@ -203,7 +198,7 @@ export function InstallmentsModal({ open, onClose, offer, onConfirm }: Installme
         </Box>
       </DialogContent>
 
-      
+
       <Box sx={{
         width: '100%',
         height: '96px',

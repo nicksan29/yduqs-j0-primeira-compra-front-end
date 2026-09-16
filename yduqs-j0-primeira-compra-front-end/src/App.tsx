@@ -18,7 +18,6 @@ export function App() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Estados do Modal
   const [selectedOffer, setSelectedOffer] = useState<Offer | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState<'home' | 'form'>('home');
@@ -43,7 +42,7 @@ export function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      
+
       <Header />
 
       {currentPage === 'form' ? (
@@ -53,14 +52,14 @@ export function App() {
           <Box component="main" sx={{ flexGrow: 1 }}>
             <PageBanner />
 
-            <Box sx={{ maxWidth: '1190px', margin: '0 auto', px: { xs: 3, lg: 0 }, py: 5 }}>
+            <Box sx={{ maxWidth: '1190px', margin: '0 auto', px: { xs: 3, lg: 0 }, pb: { xs: 3, md: 7 }, pt: { xs: 3, md: 4 } }}>
               {loading ? (
                 <Box sx={{ display: 'flex', justifyContent: 'center', mt: 5 }}>
                   <CircularProgress />
                 </Box>
               ) : (
                 <Box>
-                  <Typography variant="body3" sx={{ display: 'block', mb: 2 }}>
+                  <Typography variant="body3" sx={{ display: { xs: 'none', md: 'block' }, mb: 2 }}>
                     {courses[0]?.offers.length} opções encontradas
                   </Typography>
 
@@ -74,7 +73,9 @@ export function App() {
             </Box>
           </Box>
 
-          <Footer />
+          <Box sx={{ maxWidth: '100%' }}>
+            <Footer />
+          </Box>
         </Box>
       )}
 

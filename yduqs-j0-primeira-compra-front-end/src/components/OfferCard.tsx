@@ -16,15 +16,14 @@ export function OfferCard({ offer, onSelectOffer }: OfferCardProps) {
     <Card
       sx={{
         width: { xs: '100%', md: '381px' },
-        borderRadius: 1,
         boxShadow: "none",
         border: '1px solid #144BC8',
         display: 'flex',
         flexDirection: 'column',
-        height: '100%' 
+        height: '100%'
       }}
     >
-      
+
       <Box
         sx={{
           bgcolor: 'primary.dark',
@@ -33,10 +32,9 @@ export function OfferCard({ offer, onSelectOffer }: OfferCardProps) {
           px: { xs: 2, md: 3 },
           gap: 1,
           display: 'flex',
-          justifyContent: 'space-between'
         }}
       >
-        <Typography variant="body2">
+        <Typography variant="body2" component='p'>
           {offer.modality} | {offer.shift}
         </Typography>
       </Box>
@@ -50,36 +48,36 @@ export function OfferCard({ offer, onSelectOffer }: OfferCardProps) {
           pb: { xs: 2, md: 3 },
           display: 'flex',
           flexDirection: 'column',
-          gap: 3, 
-          flexGrow: 1 
+          gap: 3,
+          flexGrow: 1
         }}
       >
         {offer.isEaDWithoutPrice ? (
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
             <Info size={24} color="white" />
-            <Typography variant="body3">
+            <Typography variant="body3" component='p'>
               Inscreva-se para saber tudo sobre os valores e garantir a sua vaga!
             </Typography>
           </Box>
         ) : (
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
-            <Typography variant="caption">
-              De <span style={{ textDecoration: 'line-through' }}>R$ {offer.originalPrice.toFixed(2)}</span> por até
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+            <Typography variant="caption" component='p'>
+              De <span style={{ textDecoration: 'line-through' }}>R$ {offer.originalPrice?.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}</span> por até
             </Typography>
-            
-            {offer.installmentsOptions && offer.installmentsOptions.length > 0 && (
-              <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 0.5 }}>
-                <Typography variant="caption" sx={{ fontSize: '14px' }}>
-                  {offer.installmentsOptions[offer.installmentsOptions.length - 1].installments}x
-                </Typography>
-                <Typography variant="h5" component="span" sx={{ fontWeight: 700 }}>
-                  R$ {offer.installmentsOptions[offer.installmentsOptions.length - 1].installmentValue.toFixed(2).replace('.', ',')}
-                </Typography>
-              </Box>
-            )}
 
-            <Typography variant="caption" sx={{ fontSize: "14px", lineHeight: "150%" }}>
-              à vista R$ {offer.discountPrice?.toFixed(2).replace('.', ',')}
+
+            <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 0.5 }}>
+              <Typography variant="caption" component='p' sx={{ lineHeight: '135%' }}>
+                {offer.installmentsOptions[offer.installmentsOptions.length - 1].installments}x
+              </Typography>
+              <Typography variant="h5" component="span" sx={{ fontSize: { xs: '36px', md: '40px' }, lineHeight: { xs: '20px', md: '28px' }, fontWeight: 700 }}>
+                R$ {offer.installmentsOptions[offer.installmentsOptions.length - 1].installmentValue.toFixed(2).replace('.', ',')}
+              </Typography>
+            </Box>
+
+
+            <Typography variant="caption" component='p' sx={{ fontSize: "14px", lineHeight: "150%" }}>
+              à vista R$ {offer.discountPrice?.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
             </Typography>
           </Box>
         )}
@@ -90,15 +88,16 @@ export function OfferCard({ offer, onSelectOffer }: OfferCardProps) {
           fullWidth
           onClick={() => onSelectOffer(offer)}
           sx={{
-            height: '48px', 
+            height: '48px',
             px: 3,
             borderRadius: '8px',
-            textTransform: 'none',
+
             fontWeight: 500,
             fontSize: '16px',
             fontFamily: 'Inter',
             boxShadow: 'none',
-            mt: 'auto' 
+            mt: 'auto',
+            gap: 2,
           }}
         >
           Avançar
@@ -108,34 +107,32 @@ export function OfferCard({ offer, onSelectOffer }: OfferCardProps) {
       <Box
         sx={{
           p: 3,
-          bgcolor: 'background.paper', 
-          color: 'common.black',
+          bgcolor: 'background.paper',
+          color: 'text.primary',
           display: 'flex',
           flexDirection: 'column',
-          gap: 3 
+          gap: 3
         }}
       >
-        <Typography 
-          variant="body2" 
-          title={offer.campus.name} 
-          sx={{ 
+        <Typography
+          variant="body2"
+          component="p"
+          title={offer.campus.name}
+          sx={{
             fontSize: '14px',
             whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis'
           }}
         >
           {offer.campus.name}
         </Typography>
-        <Typography 
-          variant="body3" 
-          color="text.secondary" 
-          title={offer.campus.address} 
-          sx={{ 
+        <Typography
+          variant="body3"
+          component="p"
+          color="text.secondary"
+          title={offer.campus.address}
+          sx={{
             lineHeight: { xs: "135%", md: "115%" },
-            display: '-webkit-box',
-            WebkitBoxOrient: 'vertical',
-            overflow: 'hidden'
+            color: 'text.secondary',
           }}
         >
           {offer.campus.address}

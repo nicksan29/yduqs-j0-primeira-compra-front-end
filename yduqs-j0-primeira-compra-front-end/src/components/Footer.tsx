@@ -57,48 +57,67 @@ export function Footer() {
   return (
     <Box component="footer" sx={{ bgcolor: 'primary.dark', color: 'white' }}>
 
-      <Box sx={{ bgcolor: 'primary.light', py: { xs: 3, md: 3 } }}>
-        <Container maxWidth={false} sx={{ maxWidth: '1190px !important', px: { xs: 3, md: 0 } }}>
-          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', md: 'center' }, gap: 3 }}>
+      <Box sx={{ bgcolor: 'primary.light', py: { xs: 3, md: 3 }, width: '100%' }}>
+        <Container sx={{ maxWidth: '1190px !important', px: { xs: 3, lg: 0 } }}>
+          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+
             <Box component="img" src={logoFooter} alt="Logo Estácio" sx={{ height: '40px' }} />
 
-            <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: { xs: 2, md: 4 } }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Box component="img" src={phoneIcon} alt="Telefone" sx={{ width: `auto`, height: `100%` }} />
-                <Typography variant="body1">0800 771 5055</Typography>
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 7 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <Box component="img" src={phoneIcon} alt="Telefone" sx={{ width: 'auto', height: '100%' }} />
+                <Typography variant="body1" component="p" sx={{ fontWeight: 600 }}>0800 771 5055</Typography>
               </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Box component="img" src={wppIcon} alt="WhatsApp" sx={{ width: `auto`, height: `100%` }} />
-                <Typography variant="body1">Precisa de ajuda?</Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <Box component="img" src={wppIcon} alt="WhatsApp" sx={{ width: 'auto', height: '100%' }} />
+                <Typography variant="body1" component="p" sx={{ fontWeight: 600 }}>Precisa de ajuda?</Typography>
               </Box>
+            </Box>
+
+          </Box>
+        </Container>
+      </Box>
+
+      <Box sx={{ display: { xs: 'block', md: 'none' }, pt: 3 }}>
+        <Container sx={{ px: 3 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Box component="img" src={phoneIcon} alt="Telefone" sx={{ width: '24px', height: '24px' }} />
+              <Typography variant="body1" component="p" sx={{ fontWeight: 600 }}>0800 771 5055</Typography>
+            </Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Box component="img" src={wppIcon} alt="WhatsApp" sx={{ width: '24px', height: '24px' }} />
+              <Typography variant="body1" component="p" sx={{ fontWeight: 600 }}>Precisa de ajuda?</Typography>
             </Box>
           </Box>
         </Container>
       </Box>
 
-      <Container maxWidth={false} sx={{ maxWidth: '1190px !important', px: { xs: 3, md: 0 }, pt: 4 }}>
+      <Divider sx={{ borderColor: 'rgba(255,255,255,0.2)', display: { md: 'none' }, pt: 3 }} />
+
+      <Container maxWidth={false} sx={{ maxWidth: '1190px !important', px: { xs: 3, lg: 0 }, pt: { xs: 3, md: 4 }, pb: { xs: 3, md: 3.5 } }}>
 
         <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-          <Box sx={{ display: 'flex', gap: '24px', pb: 4 }}>
+          <Box sx={{ display: 'flex', gap: 1 }}>
             {topMenu.map((column) => (
-              <Box key={column.title} sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <Typography variant="subtitle1">{column.title}</Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Box key={column.title} sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                <Typography variant="subtitle1" component="h3">{column.title}</Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                   {column.links.map(link => (
-                    <Typography key={link} variant="body1" sx={{ cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}>{link}</Typography>
+                    <Typography key={link} variant="body1" component="p" sx={{ cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}>{link}</Typography>
                   ))}
                 </Box>
               </Box>
             ))}
           </Box>
 
-          <Box sx={{ display: 'flex', gap: '24px', py: 4 }}>
+          <Box sx={{ display: 'flex', gap: 1, py: 4 }}>
             {bottomMenu.map((column) => (
-              <Box key={column.title} sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <Typography variant="subtitle1">{column.title}</Typography>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Box key={column.title} sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+                <Typography variant="subtitle1" component="h3">{column.title}</Typography>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                   {column.links.map(link => (
-                    <Typography key={link} variant="body1" sx={{ cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}>{link}</Typography>
+                    <Typography key={link} variant="body1" component="p" sx={{ cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}>{link}</Typography>
                   ))}
                 </Box>
               </Box>
@@ -106,26 +125,24 @@ export function Footer() {
           </Box>
         </Box>
 
-        <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 4 }}>
+        <Box sx={{ display: { xs: 'block', md: 'none' }, mb: 3 }}>
           {allMenus.map((menu) => (
             <Accordion
               key={menu.title}
-              disableGutters
               sx={{
                 bgcolor: 'transparent',
                 color: 'white',
                 boxShadow: 'none',
-                borderBottom: '1px solid rgba(255,255,255,0.1)',
-                '&:before': { display: 'none' }
+                borderBottom: 'none',
               }}
             >
-              <AccordionSummary expandIcon={<ChevronDown color="white" />} sx={{ px: 0 }}>
-                <Typography variant="subtitle1">{menu.title}</Typography>
+              <AccordionSummary expandIcon={<ChevronDown color="white" />} sx={{ px: 0, mb: 4 }}>
+                <Typography variant="subtitle1" component="h3">{menu.title}</Typography>
               </AccordionSummary>
               <AccordionDetails sx={{ px: 0, pb: 3 }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                   {menu.links.map(link => (
-                    <Typography key={link} variant="body1">{link}</Typography>
+                    <Typography key={link} variant="body1" component="p">{link}</Typography>
                   ))}
                 </Box>
               </AccordionDetails>
@@ -135,7 +152,7 @@ export function Footer() {
 
         <Divider sx={{ borderColor: 'rgba(255,255,255,0.2)' }} />
 
-        
+
         <Box sx={{ display: 'flex', flexDirection: { xs: 'column-reverse', md: 'row' }, justifyContent: 'space-between', alignItems: { xs: 'flex-start', md: 'center' }, py: 4, gap: 4 }}>
 
           <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -144,7 +161,7 @@ export function Footer() {
             ))}
           </Box>
 
-          <Box sx={{ bgcolor: '#273c75', p: 2, borderRadius: 3, display: 'flex', alignItems: 'center', gap: 2, maxWidth: { xs: '100%', md: '336px' } }}>
+          <Box sx={{ bgcolor: '#273c75', p: 2, borderRadius: 3, display: 'flex', alignItems: 'center', gap: 2, maxWidth: { xs: '100%', md: '264px' } }}>
             <Typography variant="body3" sx={{ letterSpacing: "2%", fontSize: "16px", color: 'white', fontWeight: 600, gap: '4px' }}>
               Consulte aqui o cadastro da Instituição no Sistema e-MEC
             </Typography>
@@ -154,7 +171,7 @@ export function Footer() {
 
         <Divider sx={{ borderColor: 'rgba(255,255,255,0.2)' }} />
 
-        <Box sx={{ py: 4 }}>
+        <Box sx={{ pt: 4 }}>
           <Typography variant="body3" sx={{ color: 'rgba(255,255,255,0.7)' }}>
             Estácio Brasil - Todos os direitos reservados
           </Typography>
